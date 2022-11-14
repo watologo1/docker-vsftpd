@@ -21,7 +21,7 @@ LABEL Description="vsftpd Docker image. Supports passive mode and virtual users.
 	Usage="docker run -d -p [HOST PORT NUMBER]:21 -v [HOST FTP HOME]:/home/vsftpd fauria/vsftpd"
 
 # Fill the image with content and clean the cache(s)
-RUN zypper --non-interactive install shadow vsftpd && zypper clean -a
+RUN zypper --non-interactive install iproute2 shadow vsftpd && zypper clean -a
 
 # We already get this one via vsftpd package install
 # RUN useradd ftp
