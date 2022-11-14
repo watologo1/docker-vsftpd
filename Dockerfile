@@ -1,23 +1,30 @@
-FROM centos:7
+# Specify the license of the container build description (see also the LICENSE file)
+# SPDX-License-Identifier: MIT
+# Define the names/tags of the container
+#!BuildTag: opensuse/vsftp:latest opensuse/vsftp:%PKG_VERSION% opensuse/vsftp:%PKG_VERSION%.%RELEASE%
 
-ARG USER_ID=14
-ARG GROUP_ID=50
+FROM opensuse/tumbleweed
 
-MAINTAINER Fer Uria <fauria@gmail.com>
-LABEL Description="vsftpd Docker image based on Centos 7. Supports passive mode and virtual users." \
+# Define labels according to https://en.opensuse.org/Building_derived_containers
+# labelprefix=org.opensuse.vsftp
+LABEL org.opencontainers.image.title="VSFTP container"
+LABEL org.opencontainers.image.description="This contains very secure ftp server %PKG_VERSION%"
+LABEL org.opencontainers.image.version="%PKG_VERSION%.%RELEASE%"
+LABEL org.opensuse.reference="registry.opensuse.org/opensuse/vsftp:%PKG_VERSION%.%RELEASE%"
+LABEL org.openbuildservice.disturl="%DISTURL%"
+LABEL org.opencontainers.image.created="%BUILDTIME%"
+# endlabelprefix
+
+MAINTAINER Thomas Renninger <trenn@suse.de>
+LABEL Description="vsftpd Docker image. Supports passive mode and virtual users." \
 	License="Apache License 2.0" \
-	Usage="docker run -d -p [HOST PORT NUMBER]:21 -v [HOST FTP HOME]:/home/vsftpd fauria/vsftpd" \
-	Version="1.0"
+	Usage="docker run -d -p [HOST PORT NUMBER]:21 -v [HOST FTP HOME]:/home/vsftpd fauria/vsftpd"
 
-RUN yum -y update && yum clean all
-RUN yum install -y \
-	vsftpd \
-	db4-utils \
-	db4 \
-	iproute && yum clean all
+# Fill the image with content and clean the cache(s)
+RUN zypper --non-interactive install shadow vsftpd && zypper clean -a
 
-RUN usermod -u ${USER_ID} ftp
-RUN groupmod -g ${GROUP_ID} ftp
+# We already get this one via vsftpd package install
+# RUN useradd ftp
 
 ENV FTP_USER **String**
 ENV FTP_PASS **Random**
