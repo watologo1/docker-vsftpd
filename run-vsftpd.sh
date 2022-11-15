@@ -52,7 +52,11 @@ if [ ! $LOG_STDOUT ]; then
 cat << EOB
 	*************************************************
 	*                                               *
-	*    Docker image: fauria/vsftpd                *
+	*    Container image:                           *
+	*    https://github.com/watologo1/docker-vsftpd *
+	*                                               *
+	*    Cloned from original project from          *
+	*    Fer Uria <fauria@gmail.com>:               *
 	*    https://github.com/fauria/docker-vsftpd    *
 	*                                               *
 	*************************************************
