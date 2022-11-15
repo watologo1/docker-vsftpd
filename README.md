@@ -28,7 +28,7 @@ Environment variables
 This image uses environment variables to allow the configuration of some parameters at run time:
 
 * Variable name: `FTP_USER`
-* Default value: admin
+* Default value: ftp
 * Accepted values: Any string. Avoid whitespaces and special chars.
 * Description: Username for the default FTP account. If you don't specify it through the `FTP_USER` environment variable at run time, `admin` will be used by default.
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# If no env var for FTP_USER has been specified, use 'admin':
+# If no env var for FTP_USER has been specified, use 'ftp':
 if [ "$FTP_USER" = "**String**" ]; then
-    export FTP_USER='admin'
+    export FTP_USER='ftp'
 fi
 
 # If no env var has been specified, generate a random password for FTP_USER:
