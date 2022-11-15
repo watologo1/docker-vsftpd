@@ -104,13 +104,6 @@ This image uses environment variables to allow the configuration of some paramet
 
 ----
 
-* Variable name: `REVERSE_LOOKUP_ENABLE`
-* Default value: YES
-* Accepted values: <NO|YES>
-* Description: Set to NO if you want to avoid performance issues where a name server doesn't respond to a reverse lookup.
-
-----
-
 * Variable name: `PASV_PROMISCUOUS`
 * Default value: NO
 * Accepted values: <NO|YES>
